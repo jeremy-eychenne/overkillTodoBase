@@ -1,8 +1,8 @@
-import {State} from './reducer';
-import {selectTodos} from './selectors';
+import {TodosState} from './reducer';
+import {selectClosedTodos, selectOpenTodos, selectTodos} from './selectors';
 
 describe('Selectors', () => {
-  const initialState: State = {
+  const initialState: TodosState = {
    todos: [
      {title: 'todo1Title', isClosed: true},
      {title: 'todo2Title', isClosed: false},
@@ -12,5 +12,15 @@ describe('Selectors', () => {
   it('should select todos list', () => {
     const result = selectTodos.projector(initialState);
     expect(result).toEqual(initialState.todos);
+  });
+
+  it('should select open todos', () => {
+    const result = selectOpenTodos.projector(initialState);
+    expect(result).toHaveSize(1);
+  });
+
+  it('should select closed todos', () => {
+    const result = selectClosedTodos.projector(initialState);
+    expect(result).toHaveSize(1);
   });
 });

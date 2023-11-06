@@ -1,6 +1,6 @@
 # OverkillTodo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2 and updated to Angular 14
 
 ## Development server
 

@@ -7,8 +7,7 @@ import { TodoService } from '../services/todo.service';
 @Injectable()
 export class Effects {
   loadTodos$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(loadTodos),
+    this.actions$.pipe(ofType(loadTodos),
       mergeMap(() =>
         this.todoService.list().pipe(
           map((todos) => loadTodosSuccess({ todos })),

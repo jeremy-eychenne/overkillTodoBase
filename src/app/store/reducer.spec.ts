@@ -1,5 +1,5 @@
 import * as fromReducer from './reducer';
-import { State } from './reducer';
+import { TodosState } from './reducer';
 import { loadTodosSuccess } from './actions';
 
 describe('Reducer', () => {
@@ -18,7 +18,7 @@ describe('Reducer', () => {
   describe('loadTodosSuccess action', () => {
     it('should retrieve all todos and update the state', () => {
       const { initialState } = fromReducer;
-      const newState: State = { todos: [{ title: 'aTitle', isClosed: false }] };
+      const newState: TodosState = { todos: [{ title: 'aTitle', isClosed: false }] };
       const action = loadTodosSuccess({
         todos: [...newState.todos],
       });
