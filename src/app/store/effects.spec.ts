@@ -1,14 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { StoreModule } from '@ngrx/store';
-import { Effects } from './effects';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
 import { Actions } from '@ngrx/effects';
-import { todosReducer } from './reducer';
-import { TodoService } from '../services/todo.service';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { StoreModule } from '@ngrx/store';
 import { cold, hot } from 'jasmine-marbles';
-import {loadTodos, loadTodosFailed, loadTodosSuccess} from './actions';
+import { Observable, of } from 'rxjs';
+
+import { loadTodos, loadTodosFailed, loadTodosSuccess } from './actions';
+import { Effects } from './effects';
+import { todosReducer } from './reducer';
 import { Todo } from '../models/todo';
+import { TodoService } from '../services/todo.service';
 
 describe('Effects', () => {
   let effects: Effects;

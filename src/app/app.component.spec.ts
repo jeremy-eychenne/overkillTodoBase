@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -27,8 +28,6 @@ describe('AppComponent', () => {
   });
 
   it('should render title', () => {
-    expect(
-      fixture.debugElement.query(By.css('mat-toolbar a')).nativeElement.innerText
-    ).toContain('Overkill Todo App');
+    expect(fixture.debugElement.query(By.css('mat-toolbar a')).nativeElement.innerText).toContain('Overkill Todo App');
   });
 });

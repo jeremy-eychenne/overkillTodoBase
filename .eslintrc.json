@@ -1,0 +1,139 @@
+{
+  "root": true,
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "allowTemplateLiterals": true,
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:import/recommended",
+        "plugin:import/typescript",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "oap",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "oap",
+            "style": "camelCase"
+          }
+        ],
+        "@typescript-eslint/ban-types": "warn",
+        "@typescript-eslint/no-shadow": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "objectLiteralProperty",
+            "leadingUnderscore": "allow",
+            "format": ["camelCase", "PascalCase", "snake_case", "UPPER_CASE"]
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_",
+            "ignoreRestSiblings": true
+          }
+        ],
+        "comma-dangle": [
+          "error",
+          {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "never"
+          }
+        ],
+        "import/no-deprecated": "off",
+        "import/no-duplicates": "error",
+        "import/order": [
+          "error",
+          {
+            "groups": [["external", "builtin", "type"], ["internal"], ["index", "parent", "sibling"], ["object"]],
+            "pathGroups": [
+              { "pattern": "@app/*", "group": "internal" },
+              { "pattern": "@env/*", "group": "internal" },
+              { "pattern": "@mocks/*", "group": "internal" },
+              { "pattern": "@shared/*", "group": "internal", "position": "after"  }
+            ],
+            "newlines-between": "always",
+            "alphabetize": {
+              "order": "asc"
+            }
+          }
+        ],
+        "indent": "off",
+        "jsdoc/no-types": "off",
+        "max-len": [
+          "error",
+          { "code": 140, "tabWidth": 2, "ignoreRegExpLiterals": true, "ignoreTemplateLiterals": true, "ignoreUrls": true }
+        ],
+        "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }],
+        "no-use-before-define": "error",
+        "no-shadow": "off",
+        "no-case-declarations": "off",
+        "no-console": ["warn", {}],
+        "no-empty-function": ["error", { "allow": ["constructors", "arrowFunctions"] }],
+        "no-underscore-dangle": "off",
+        "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        "space-before-function-paren": [
+          "error",
+          {
+            "named": "never",
+            "anonymous": "always",
+            "asyncArrow": "always"
+          }
+        ]
+      },
+      "settings": {
+        "import/resolver": {
+          "typescript": {
+            "alwaysTryTypes": true,
+            "project": "tsconfig.json"
+          }
+        },
+        "import/parsers": {
+          "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/internal-regex": ["^(@mocks|@env|@shared)/"]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular"
+          }
+        ]
+      }
+    }
+  ]
+}
