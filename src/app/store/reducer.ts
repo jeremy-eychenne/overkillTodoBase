@@ -1,11 +1,12 @@
-import {Todo} from '../models/todo';
-import {createReducer, on} from '@ngrx/store';
-import {loadTodosSuccess, updateTodo} from './actions';
+import { createReducer, on } from '@ngrx/store';
+
+import { loadTodosSuccess, updateTodo } from './actions';
+import { Todo } from '../models/todo';
 
 export const featureKey = 'todosStore';
 
 export interface TodosState {
-  todos: ReadonlyArray<Todo>;
+  todos: Todo[];
 }
 
 export const initialState: TodosState = {
@@ -13,35 +14,16 @@ export const initialState: TodosState = {
 };
 
 function updateTodoInArray(todos: ReadonlyArray<Todo>, updatedTodo: Todo): Todo[] {
-  return todos.map(todo => (todo.title === updatedTodo.title ? { ...todo, ...updatedTodo } : todo));
+  return todos.map((todo) => (todo.title === updatedTodo.title ? { ...todo, ...updatedTodo } : todo));
 }
 export const todosReducer = createReducer(
   initialState,
-  on(
-    loadTodosSuccess,
-    (state, { todos }) => ({
-      ...state,
-      todos
-    })
-  ),
-  on(
-    updateTodo,
-    (state, { todo }) => ({
-      ...state,
-      todos: updateTodoInArray(state.todos, todo)
-    })
-  ),
+  on(loadTodosSuccess, (state, { todos }) => ({
+    ...state,
+    todos,
+  })),
+  on(updateTodo, (state, { todo }) => ({
+    ...state,
+    todos: updateTodoInArray(state.todos, todo),
+  }))
 );
-
-/*
-export const oldTodosReducer = createReducer(
-  initialState,
-  on(
-    loadTodosSuccess,
-    (state, { todos }) => ({
-      ...state,
-      todos
-    })
-  ),
-);
-*/

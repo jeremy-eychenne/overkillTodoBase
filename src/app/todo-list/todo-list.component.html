@@ -5,13 +5,14 @@
       <mat-list>
         <mat-list-item *ngFor="let todo of openTodos$ | async">
           <h4 matLine>
-            <mat-checkbox [(ngModel)]="todo.isClosed" (change)="toggleTodo(todo)"></mat-checkbox>{{ todo.title }}
+            <mat-checkbox [(ngModel)]="todo.isClosed" (change)="closeTodo(todo)">{{ todo.title }}</mat-checkbox>
           </h4>
         </mat-list-item>
         <mat-list-item *ngFor="let todo of closedTodos$ | async">
           <h4 matLine>
-            <mat-checkbox [(ngModel)]="todo.isClosed" (change)="toggleTodo(todo)"></mat-checkbox>
-            <del>{{ todo.title }}</del>
+            <mat-checkbox [(ngModel)]="todo.isClosed" (change)="openTodo(todo)"
+              ><del>{{ todo.title }}</del></mat-checkbox
+            >
           </h4>
         </mat-list-item>
       </mat-list>

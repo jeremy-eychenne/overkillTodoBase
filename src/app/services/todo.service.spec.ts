@@ -1,13 +1,10 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { first } from 'rxjs/operators';
 
 import { TodoService } from './todo.service';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { first } from 'rxjs/operators';
-import { Todo } from '../models/todo';
 import { environment } from '../../environments/environment';
+import { Todo } from '../models/todo';
 
 describe('TodoService', () => {
   let service: TodoService;
@@ -34,9 +31,7 @@ describe('TodoService', () => {
         done();
       }, done.fail);
 
-    const req = httpMock.expectOne(
-      (r) => r.url === `${environment.baseUrl}/api/todos`
-    );
+    const req = httpMock.expectOne((r) => r.url === `${environment.baseUrl}/api/todos`);
     expect(req.request.method).toEqual('GET');
 
     req.flush(mockedTodoList);

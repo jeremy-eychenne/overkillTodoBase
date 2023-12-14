@@ -109,6 +109,17 @@
             "scripts": []
           }
         },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["@(src|tests|e2e)/**/*.@(html|ts)"]
+          },
+          "configurations": {
+            "ci": {
+              "eslintConfig": ".eslintrc.ci.json"
+            }
+          }
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
