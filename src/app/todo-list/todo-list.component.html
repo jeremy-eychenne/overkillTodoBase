@@ -4,10 +4,10 @@
     <mat-card-content>
       <mat-list>
         <mat-list-item *ngFor="let todo of todos$ | async">
-          <h4 matLine>
+          <h4 matLine [ngClass]="{ checked: todo.isClosed }">
             <mat-checkbox
               [checked]="todo.isClosed"
-              disabled="true"
+              (change)="toggleTodo(todo)"
             ></mat-checkbox>
             {{ todo.title }}
           </h4>

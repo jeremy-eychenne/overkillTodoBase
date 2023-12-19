@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, map} from 'rxjs';
 import {Todo} from '../models/todo';
 import {Store} from '@ngrx/store';
 import {selectTodos} from '../store/selectors';
-import {loadTodos} from '../store/actions';
+import {loadTodos, toggleTodo} from '../store/actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -15,11 +15,14 @@ export class TodoListComponent implements OnInit {
   todos$: Observable<ReadonlyArray<Todo>>;
 
   constructor(private store: Store) {
-    this.todos$ = this.store.select(selectTodos);
+    this.todos$ = this.store.select(selectTodos)
   }
 
   ngOnInit(): void {
      this.store.dispatch(loadTodos());
   }
 
+  toggleTodo(todo:Todo){
+    this.store.dispatch(toggleTodo({todo}));
+  }
 }
